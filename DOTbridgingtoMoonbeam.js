@@ -9,11 +9,6 @@ async function depositDOTtoMoonbeam() {
   const polkadotKeyring = keyring.addFromUri(mnemonic);
 
   const addr = "1CUKKQhuqcbqXSY4QhWZxFct5uTKbWVCMKMUBHqWyc8ds1c";
-
-  const { nonce, data: balance } = await api.query.system.account(addr);
-  const adjustedBalance = balance.free - 22000000000;
-  console.log(` balance of ${adjustedBalance} `);
-
  
 
   const dot = AssetSymbol.DOT;
@@ -22,7 +17,6 @@ async function depositDOTtoMoonbeam() {
 
 
     const { asset, sourceBalance, source, min, send } = await from(polkadot).get("0xD27cEcE5CE8b4f6Fa47A160105D842F97aee227d", polkadotKeyring);
-    await send(+adjustedBalance, (event) => console.log(event));
  
     await send(+"1000000", (event) => console.log(event));
     await sleep(10000);
